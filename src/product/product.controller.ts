@@ -22,9 +22,9 @@ export class ProductController {
     async getProduct(@Res() res, @Param('productID') productID: string):Promise<Product> {
         const product = await this.productService.getProduct(productID)
         if(!product) throw new NotFoundException('Product doesn`t exist')
-        return res.status(HttpStatus.OK).json({
+        return res.status(HttpStatus.OK).json(
             product
-        })
+        )
     }
 
     @Post('/create')
