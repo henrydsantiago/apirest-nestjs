@@ -18,7 +18,7 @@ export class ProductController {
         return products
     }
 
-    @Get('/:productID')
+    @Get('/:productID') //http://localhost:3000/product/64debbcfa047f37da1c9fe51
     async getProduct(@Res() res, @Param('productID') productID: string):Promise<Product> {
         const product = await this.productService.getProduct(productID)
         if(!product) throw new NotFoundException('Product doesn`t exist')
@@ -27,7 +27,7 @@ export class ProductController {
         )
     }
 
-    @Post('/create')
+    @Post('/create') //http://localhost:3000/product/create
     async createPost(@Res() res, @Body() createProductDTO: CreateProductDTO):Promise<Product>{ // createProductDTO es una Class de DTO
         const product = await this.productService.createProduct(createProductDTO)
         return res.status(HttpStatus.OK).json({
