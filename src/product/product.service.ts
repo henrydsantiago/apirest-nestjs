@@ -29,10 +29,17 @@ export class ProductService {
     return products
   }
 
+  async getProductsByParam(parametro:any): Promise<iProduct[]>{
+    console.log("Servidor/PARAMETRO: ", parametro);
+    const products = await this.productModel.find({name:parametro})
+    return products
+  }
+
   async getProduct(productID: string): Promise<iProduct>{
     const product = await this.productModel.findById(productID)
     return product
   }
+
 
   async createProduct(createProductDTO: CreateProductDTO):Promise<iProduct>{
     const product = new this.productModel(createProductDTO)
